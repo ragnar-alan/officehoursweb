@@ -17,29 +17,27 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                    .antMatchers("/").permitAll()
-                    .antMatchers("/css/*").permitAll()
-                    .antMatchers("/css/skins/*").permitAll()
-                    .antMatchers("/js/*").permitAll()
-                    .antMatchers("/images/*").permitAll()
-                    .antMatchers("/fonts/*").permitAll()
-                    .antMatchers("/logs").permitAll()
-                    .anyRequest().authenticated()
-                .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                .and()
-                    .logout().logoutUrl("/logout")
-                    .permitAll();
+            .authorizeRequests()
+                .antMatchers("/css/*").permitAll()
+                .antMatchers("/css/skins/*").permitAll()
+                .antMatchers("/js/*").permitAll()
+                .antMatchers("/images/*").permitAll()
+                .antMatchers("/fonts/*").permitAll()
+                .anyRequest().authenticated()
+            .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+            .and()
+                .logout().logoutUrl("/logout")
+                .permitAll();
     }
 
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
+            .inMemoryAuthentication()
+            .withUser("user").password("password").roles("USER");
     }
 }

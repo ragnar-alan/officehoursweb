@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate4.*;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -16,16 +18,16 @@ import java.util.Properties;
 @Configuration
 public class DataSourceConfiguration {
 
-    @Value("${jdbc.driverClassName}")
+    @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
-    @Value("${jdbc.url}")
+    @Value("${spring.datasource.url}")
     private String url;
 
-    @Value("${jdbc.username}")
+    @Value("${spring.datasource.username}")
     private String username;
 
-    @Value("${jdbc.password}")
+    @Value("${spring.datasource.password}")
     private String password;
 
     @Value("${hibernate.dialect}")
@@ -37,9 +39,9 @@ public class DataSourceConfiguration {
     @Value("${hibernate.hbm2ddl.auto}")
     private String hibernateHbm2ddlAuto;
 
-    @Bean()
+    @Bean
     public DataSource getDataSource() {
-        BasicDataSource ds = new DriverManagerDataSource();
+        DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName(driverClassName);
         ds.setUrl(url);
         ds.setUsername(username);
@@ -63,18 +65,16 @@ public class DataSourceConfiguration {
     }
 
     @Bean
-    public AnnotationSessionFactoryBean getSessionFactory()
-    {
-        AnnotationSessionFactoryBean asfb = new AnnotationSessionFactoryBean();
-        asfb.setDataSource(getDataSource());
-        asfb.setHibernateProperties(getHibernateProperties());
-        asfb.setPackagesToScan(new String[]{"com.sivalabs"});
-        return asfb;
+    public LocalSessionFactoryBean getSessionFactory() {
+        LocalSessionFactoryBean  lsfb = new LocalSessionFactoryBean ();
+        lsfb.setDataSource(getDataSource());
+        lsfb.setHibernateProperties(getHibernateProperties());
+        lsfb.setPackagesToScan(new String[]{"com.epam"});
+        return lsfb;
     }
 
     @Bean
-    public Properties getHibernateProperties()
-    {
+    public Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", hibernateDialect);
         properties.put("hibernate.show_sql", hibernateShowSql);
