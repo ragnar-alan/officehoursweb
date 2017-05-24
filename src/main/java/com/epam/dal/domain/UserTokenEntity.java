@@ -1,7 +1,6 @@
 package com.epam.dal.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Tamas_Boros on 5/24/2017.
@@ -10,5 +9,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="token")
 public class UserTokenEntity {
-
+    @Id
+    @GeneratedValue
+    @Column
+    private Long tokenId;
 }

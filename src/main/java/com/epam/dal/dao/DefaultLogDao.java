@@ -2,6 +2,7 @@ package com.epam.dal.dao;
 
 import com.epam.dal.domain.Log;
 import com.epam.dal.repository.LogRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,7 +17,7 @@ public class DefaultLogDao implements LogDao{
     @Override
     public void save(Log log) {
         //TODO logEntitiyTransformer
-        //logRepository.save();
+        logRepository.save();
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.epam.dal.dao;
 import com.epam.dal.domain.User;
 import com.epam.dal.repository.UserRepository;
 import com.epam.dal.transformer.UserEntityTransformer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class DefaultUserDao implements UserDao{
 
     private UserRepository userRepository;
 
+    @Autowired
     private UserEntityTransformer userEntityTransformer;
 
     @Override

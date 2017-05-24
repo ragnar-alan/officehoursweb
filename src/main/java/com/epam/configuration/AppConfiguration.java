@@ -10,7 +10,6 @@ import org.springframework.core.io.ClassPathResource;
  * Created by boros on 2017. 04. 17..
  */
 @Configuration
- @ComponentScan("com.epam")
 public class AppConfiguration {
 
     @Bean

@@ -2,12 +2,14 @@ package com.epam.service;
 
 import com.epam.dal.dao.UserDao;
 import com.epam.dal.domain.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by Tamas_Boros on 5/24/2017.
  */
+@Service
 public class DefaultUserService implements UserService {
     private UserDao userDao;
 

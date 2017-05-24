@@ -6,6 +6,7 @@ import com.epam.dal.repository.UserProfileRepository;
 import com.epam.dal.repository.UserRepository;
 import com.epam.dal.transformer.UserEntityTransformer;
 import com.epam.dal.transformer.UserProfileEntityTransformer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class DefaultUserProfileDao implements UserProfileDao{
 
     private UserProfileRepository userProfileRepository;
 
+    @Autowired
     private UserProfileEntityTransformer userProfileEntityTransformer;
 
 
