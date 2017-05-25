@@ -17,18 +17,18 @@ public class UserProfileEntity {
     @Column(name="profile_id")
     private Long profileId;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn(name="user_id")
     private UserEntity user;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn(name="token_id", columnDefinition = "VARCHAR(255) NOT NULL")
     private UserTokenEntity userTokenEntity;
 
     @Column(name="created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL" )
     private ZonedDateTime createdAt;
 
-    @Column(name="updated_at", nullable = true)
+    @Column(name="updated_at", columnDefinition = "DATETIME DEFAULT NULL")
     private ZonedDateTime updatedAt;
 
     @Column(name="deleted_at", columnDefinition = "DATETIME DEFAULT NULL")

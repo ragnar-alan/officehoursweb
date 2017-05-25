@@ -13,7 +13,6 @@ public class UserTokenEntity {
 
     @Id
     @GeneratedValue
-    @PrimaryKeyJoinColumn
     @Column(name="token_id")
     private Long tokenId;
 
@@ -23,7 +22,7 @@ public class UserTokenEntity {
     @Column(name="created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL" )
     private ZonedDateTime createdAt;
 
-    @Column(name="updated_at", nullable = true)
+    @Column(name="updated_at", columnDefinition = "DATETIME DEFAULT NULL")
     private ZonedDateTime updatedAt;
 
     @Column(name="deleted_at", columnDefinition = "DATETIME DEFAULT NULL")

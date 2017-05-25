@@ -14,8 +14,8 @@ public class LogEntity {
     @Column(name="log_id")
     private Long logId;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="token_id", columnDefinition = "VARCHAR(255) NOT NULL")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="token_id")
     private UserTokenEntity userTokenEntity;
 
     @Column(name="created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL")

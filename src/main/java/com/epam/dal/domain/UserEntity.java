@@ -26,7 +26,7 @@ public class UserEntity {
     @Column(name="created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL" )
     private ZonedDateTime createdAt;
 
-    @Column(name="updated_at", nullable = true)
+    @Column(name="updated_at", columnDefinition = "DATETIME DEFAULT NULL")
     private ZonedDateTime updatedAt;
 
     @Column(name="deleted_at", columnDefinition = "DATETIME DEFAULT NULL")
