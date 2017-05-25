@@ -7,7 +7,6 @@ import com.epam.dal.domain.Log;
  */
 public interface LogDao {
 
-    void save(Log log);
     void update(Log log);
     void delete(Long logId);
 

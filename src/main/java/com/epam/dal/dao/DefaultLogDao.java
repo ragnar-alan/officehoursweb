@@ -14,11 +14,6 @@ public class DefaultLogDao implements LogDao{
 
     private LogRepository logRepository;
 
-    @Override
-    public void save(Log log) {
-        //TODO logEntitiyTransformer
-        logRepository.save();
-    }
 
     @Override
     public void update(Log log) {

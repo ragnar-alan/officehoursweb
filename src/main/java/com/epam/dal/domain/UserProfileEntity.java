@@ -17,21 +17,21 @@ public class UserProfileEntity {
     @Column(name="profile_id")
     private Long profileId;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="user_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn(name="user_id")
     private UserEntity user;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="token_id", columnDefinition = "NOT NULL")
-    private UserTokenEntity token;
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn(name="token_id", columnDefinition = "VARCHAR(255) NOT NULL")
+    private UserTokenEntity userTokenEntity;
 
-    @Column(name="created_at", columnDefinition = "DEFAULT NOW() NOT NULL" )
+    @Column(name="created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL" )
     private ZonedDateTime createdAt;
 
     @Column(name="updated_at", nullable = true)
     private ZonedDateTime updatedAt;
 
-    @Column(name="deleted_at", columnDefinition = "DEFAULT NULL")
+    @Column(name="deleted_at", columnDefinition = "DATETIME DEFAULT NULL")
     private ZonedDateTime deletedAt;
 
     public Long getProfileId() {
@@ -50,12 +50,12 @@ public class UserProfileEntity {
         this.user = user;
     }
 
-    public UserTokenEntity getToken() {
-        return token;
+    public UserTokenEntity getUserTokenEntity() {
+        return userTokenEntity;
     }
 
-    public void setToken(UserTokenEntity token) {
-        this.token = token;
+    public void setUserTokenEntity(UserTokenEntity userTokenEntity) {
+        this.userTokenEntity = userTokenEntity;
     }
 
     public ZonedDateTime getCreatedAt() {

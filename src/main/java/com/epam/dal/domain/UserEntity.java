@@ -23,13 +23,13 @@ public class UserEntity {
     @Column(name="user_password")
     private String userPassword;
 
-    @Column(name="created_at", columnDefinition = "DEFAULT NOW() NOT NULL" )
+    @Column(name="created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL" )
     private ZonedDateTime createdAt;
 
     @Column(name="updated_at", nullable = true)
     private ZonedDateTime updatedAt;
 
-    @Column(name="deleted_at", columnDefinition = "DEFAULT NULL")
+    @Column(name="deleted_at", columnDefinition = "DATETIME DEFAULT NULL")
     private ZonedDateTime deletedAt;
 
     public Long getUserId() {

@@ -13,8 +13,4 @@ public class DefaultLogService implements LogService {
 
     private LogDao logDao;
 
-    @Override
-    public void save(Log log) {
-        logDao.save(log);
-    }
 }
