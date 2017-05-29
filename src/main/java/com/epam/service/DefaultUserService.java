@@ -18,8 +18,6 @@ public class DefaultUserService implements UserService {
         userDao.save(user);
     }
 
-    
-
     @Override
     public List<User> getAllUsers() {
 

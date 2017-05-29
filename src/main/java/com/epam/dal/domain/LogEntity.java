@@ -7,21 +7,24 @@ import java.time.ZonedDateTime;
  * Created by Tamas_Boros on 5/24/2017.
  */
 @Entity
-@Table(name="logs")
+@Table(name = "logs")
 public class LogEntity {
     @Id
     @GeneratedValue
-    @Column(name="log_id")
+    @Column(name = "log_id")
     private Long logId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="token_id")
+    @JoinColumn(name = "token_id")
     private UserTokenEntity userTokenEntity;
 
-    @Column(name="created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL")
+    @Column(name = "user_added_time")
+    private Boolean userAddedTime;
+
+    @Column(name = "created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL")
     private ZonedDateTime createdAt;
 
-    @Column(name="deleted_at")
+    @Column(name = "deleted_at")
     private ZonedDateTime deletedAt;
 
     public Long getLogId() {
