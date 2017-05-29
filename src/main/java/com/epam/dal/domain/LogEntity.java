@@ -19,7 +19,7 @@ public class LogEntity {
     private UserTokenEntity userTokenEntity;
 
     @Column(name = "user_added_time")
-    private Boolean userAddedTime;
+    private byte userAddedTime;
 
     @Column(name = "created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL")
     private ZonedDateTime createdAt;
@@ -57,5 +57,13 @@ public class LogEntity {
 
     public void setDeletedAt(ZonedDateTime deletedAt) {
         this.deletedAt = deletedAt;
+    }
+
+    public byte getUserAddedTime() {
+        return userAddedTime;
+    }
+
+    public void setUserAddedTime(byte userAddedTime) {
+        this.userAddedTime = userAddedTime;
     }
 }
