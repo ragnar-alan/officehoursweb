@@ -26,7 +26,7 @@ public class DefaultUserService implements UserService {
 
     @Override
     public User getUser(Long uid) {
-        userDao.delete(uid);
+        userDao.getOneUserById(uid);
         return null;
     }
 }

@@ -1,6 +1,7 @@
 package com.epam.dal.dao;
 
 import com.epam.dal.domain.User;
+import com.epam.dal.domain.UserEntity;
 import com.epam.dal.repository.UserRepository;
 import com.epam.dal.transformer.UserEntityTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +21,17 @@ public class DefaultUserDao implements UserDao{
     private UserEntityTransformer userEntityTransformer;
 
     @Override
-    public void save(User user) {
-        userRepository.save(userEntityTransformer.transformUserToUserEntity(user));
-    }
-
-    @Override
-    public void update(User user) {}
-
-    @Override
-    public void delete(Long uid) {
-        userRepository.delete(uid);
+    public UserEntity save(User user) {
+        return userRepository.save(userEntityTransformer.transformUserToUserEntity(user));
     }
 
     @Override
     public List<User> getAllUser() {
         return userEntityTransformer.bulkTransformUserEntityToUser(userRepository.findAll());
+    }
+
+    @Override
+    public User getOneUserById(Long userId) {
+        return userEntityTransformer.transformUserEntityToUser(userRepository.findOne(userId));
     }
 }

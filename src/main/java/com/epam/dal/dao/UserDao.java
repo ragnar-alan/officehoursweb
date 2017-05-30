@@ -9,11 +9,10 @@ import java.util.List;
  * Created by Tamas_Boros on 5/24/2017.
  */
 public interface UserDao {
-    void save(User user);
 
-    void update(User user);
+    User getOneUserById(Long id);
 
-    void delete(Long uid);
+    UserEntity save(User user);
 
     List<User> getAllUser();
 }
