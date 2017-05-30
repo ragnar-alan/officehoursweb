@@ -5,7 +5,9 @@ import com.epam.dal.domain.UserEntity;
 import com.epam.dal.repository.UserRepository;
 import com.epam.dal.transformer.UserEntityTransformer;
 import org.mockito.*;
+
 import static org.testng.Assert.*;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -23,7 +25,7 @@ public class DefaultUserDaoTest {
     private static final String USER_EMAIL = "test@test.com";
     private static final String USER_PASSWORD = "password";
     private static final ZonedDateTime NOW = ZonedDateTime.now();
-    private static final Long[] USER_IDS = {1L,2L,3L};
+    private static final Long[] USER_IDS = {1L, 2L, 3L};
 
     @InjectMocks
     private DefaultUserDao underTest;
@@ -71,7 +73,7 @@ public class DefaultUserDaoTest {
 
     private List<User> getUsers() {
         List<User> users = new ArrayList<>();
-        for(Long userId : USER_IDS) {
+        for (Long userId : USER_IDS) {
             users.add(createNewUser(Optional.of(userId)));
         }
         return users;

@@ -17,6 +17,7 @@ import java.util.List;
 @Component
 public class DefaultUserProfileDao implements UserProfileDao{
 
+    @Autowired
     private UserProfileRepository userProfileRepository;
 
     @Autowired

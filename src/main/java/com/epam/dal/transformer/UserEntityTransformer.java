@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Tamas_Boros on 5/24/2017.
@@ -34,14 +35,7 @@ public class UserEntityTransformer {
         return user;
     }
 
-    public List<User> bulkTransformUserEntityToUser(Iterable<UserEntity> userEntities) {
-        List<User> userList = new ArrayList<>();
-        for(UserEntity ue : userEntities) {
-            userList.add(transformUserEntityToUser(ue));
-        }
-        return userList;
+    public List<User> bulkTransformUserEntityToUser(List<UserEntity> userEntities) {
+        return userEntities.stream().map(ue -> transformUserEntityToUser(ue)).collect(Collectors.toList());
     }
-
-
-
 }

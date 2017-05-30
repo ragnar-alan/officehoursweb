@@ -2,6 +2,7 @@ package com.epam.service;
 
 import com.epam.dal.dao.UserDao;
 import com.epam.dal.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.List;
  */
 @Service
 public class DefaultUserService implements UserService {
+
+    @Autowired
     private UserDao userDao;
 
     @Override

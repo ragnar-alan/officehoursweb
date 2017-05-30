@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
  * Created by Tamas_Boros on 5/24/2017.
  */
 @Repository
-@Qualifier("logRepository")
 public interface LogRepository extends JpaRepository<LogEntity, Long> {
 
 }

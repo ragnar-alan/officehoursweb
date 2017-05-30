@@ -11,7 +11,6 @@ import java.util.List;
  * Created by Tamas_Boros on 5/24/2017.
  */
 @Repository
-@Qualifier("userRepository")
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     List<UserEntity> findAll();
