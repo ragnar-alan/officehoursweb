@@ -2,6 +2,7 @@ package com.epam.dal.domain;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 /**
@@ -10,19 +11,19 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Table(name="user_profiles")
-public class UserProfileEntity {
+public class UserProfileEntity implements Serializable {
 
     @Id
     @GeneratedValue
     @Column(name="profile_id")
     private Long profileId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name="user_id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="user_id")
     private UserEntity user;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name="token_id", columnDefinition = "VARCHAR(255) NOT NULL")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="token_id", columnDefinition = "VARCHAR(255) NOT NULL")
     private UserTokenEntity userTokenEntity;
 
     @Column(name="created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL" )

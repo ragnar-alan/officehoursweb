@@ -1,16 +1,23 @@
 package com.epam.configuration;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.util.Properties;
 
 /**
  * Created by boros on 2017. 04. 17..
  */
 @Configuration
-public class AppConfiguration {
+public class AppConfiguration extends WebMvcConfigurerAdapter {
 
     @Bean
     public PropertyPlaceholderConfigurer getPropertyPlaceholderConfigurer() {
@@ -19,4 +26,5 @@ public class AppConfiguration {
         ppc.setIgnoreUnresolvablePlaceholders(true);
         return ppc;
     }
+
 }

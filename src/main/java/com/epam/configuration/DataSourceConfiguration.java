@@ -2,11 +2,12 @@ package com.epam.configuration;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.*;
+import org.springframework.orm.hibernate5.*;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -31,13 +32,13 @@ public class DataSourceConfiguration {
     private String password;
 
     @Value("${hibernate.dialect}")
-    private String hibernateDialect;
+    String hibernateDialect;
 
     @Value("${hibernate.show_sql}")
-    private String hibernateShowSql;
+    String hibernateShowSql;
 
     @Value("${hibernate.hbm2ddl.auto}")
-    private String hibernateHbm2ddlAuto;
+    String hibernateHbm2ddlAuto;
 
     @Bean
     public DataSource getDataSource() {
@@ -65,12 +66,10 @@ public class DataSourceConfiguration {
     }
 
     @Bean
-    public LocalSessionFactoryBean getSessionFactory() {
-        LocalSessionFactoryBean  lsfb = new LocalSessionFactoryBean ();
-        lsfb.setDataSource(getDataSource());
-        lsfb.setHibernateProperties(getHibernateProperties());
-        lsfb.setPackagesToScan(new String[]{"com.epam"});
-        return lsfb;
+    public SessionFactory  getSessionFactory() {
+        LocalSessionFactoryBuilder  lsfb = new LocalSessionFactoryBuilder(getDataSource());
+        lsfb.scanPackages("com.epam.dal.domain").addProperties(getHibernateProperties());
+        return lsfb.buildSessionFactory();
     }
 
     @Bean
@@ -79,7 +78,13 @@ public class DataSourceConfiguration {
         properties.put("hibernate.dialect", hibernateDialect);
         properties.put("hibernate.show_sql", hibernateShowSql);
         properties.put("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
+        properties.put("hibernate.dialect",hibernateDialect);
 
         return properties;
+    }
+
+    @Bean
+    public HibernateTransactionManager txManager() {
+        return new HibernateTransactionManager(getSessionFactory());
     }
 }

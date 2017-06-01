@@ -2,7 +2,11 @@ package com.epam.dal.domain;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.ZonedDateTime;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.data.annotation.Transient;
 
 /**
  * Created by Tamas_Boros on 5/24/2017.
@@ -10,20 +14,24 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Table(name="users")
-public class UserEntity {
+public class UserEntity implements Serializable{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="user_id")
     private Long userId;
 
     @Column(name="user_email")
+    @NotEmpty
     private String userEmail;
 
     @Column(name="user_password")
+    @NotEmpty
+    @Transient
     private String userPassword;
 
     @Column(name="created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL" )
+    @NotEmpty
     private ZonedDateTime createdAt;
 
     @Column(name="updated_at", columnDefinition = "DATETIME DEFAULT NULL")

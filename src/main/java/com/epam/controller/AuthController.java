@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -20,7 +21,11 @@ public class AuthController {
 
     @RequestMapping(value="logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request) {
-        request.getRemoteUser();
+        try {
+            request.logout();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
         return "login";
     }
 }

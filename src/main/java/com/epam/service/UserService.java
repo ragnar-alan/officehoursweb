@@ -1,16 +1,19 @@
 package com.epam.service;
 
 import com.epam.dal.domain.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
 /**
  * Created by Tamas_Boros on 5/24/2017.
  */
-public interface UserService {
+public interface UserService extends UserDetailsService {
     void save(User user);
 
     List<User> getAllUsers();
 
     User getUser(Long uid);
+
+    User getUserByEmail(String email);
 }

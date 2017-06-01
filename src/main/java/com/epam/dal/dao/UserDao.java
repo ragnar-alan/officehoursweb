@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface UserDao {
 
+    User getUserByEmail(String email);
+
     User getOneUserById(Long id);
 
     UserEntity save(User user);
