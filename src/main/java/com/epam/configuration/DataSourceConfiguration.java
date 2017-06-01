@@ -32,13 +32,13 @@ public class DataSourceConfiguration {
     private String password;
 
     @Value("${hibernate.dialect}")
-    String hibernateDialect;
+    private String hibernateDialect;
 
     @Value("${hibernate.show_sql}")
-    String hibernateShowSql;
+    private String hibernateShowSql;
 
     @Value("${hibernate.hbm2ddl.auto}")
-    String hibernateHbm2ddlAuto;
+    private String hibernateHbm2ddlAuto;
 
     @Bean
     public DataSource getDataSource() {
@@ -78,7 +78,6 @@ public class DataSourceConfiguration {
         properties.put("hibernate.dialect", hibernateDialect);
         properties.put("hibernate.show_sql", hibernateShowSql);
         properties.put("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
-        properties.put("hibernate.dialect",hibernateDialect);
 
         return properties;
     }
