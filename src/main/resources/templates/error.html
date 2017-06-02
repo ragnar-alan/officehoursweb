@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>OfficeHours - ERROR</title>
+</head>
+<body class="skin-blue wysihtml5-supported">
+<div class="wrapper">
+    <div th:include="fragments/header"></div>
+
+    <header class="main-header">
+        <div class="logo"><b>Office</b>Hours</div>
+        <th:block th:include="fragments/top_bar"></th:block>
+    </header>
+    <th:block th:include="fragments/navigation"/>
+    <div class="content-wrapper">
+        <section class="content-header">
+            {{ isAuthenticated(); }}
+        </section>
+    </div>
+    <div th:include="fragments/footer"></div>
+</div>
+</body>
+</html>

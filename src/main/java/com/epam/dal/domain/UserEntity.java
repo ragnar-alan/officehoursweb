@@ -21,7 +21,7 @@ public class UserEntity {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "user_email")
+    @Column(name = "user_email", unique = true)
     @NotEmpty
     private String userEmail;
 

@@ -33,8 +33,9 @@ public class DefaultUserDao implements UserDao {
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return userEntityTransformer.transformUserEntityToUser(userRepository.findByUserEmail(email));
+    public User getUserByEmail(String userEmail) {
+        UserEntity userEntity = userRepository.findByUserEmail(userEmail);
+        return userEntityTransformer.transformUserEntityToUser(userEntity);
     }
 
     @Override
