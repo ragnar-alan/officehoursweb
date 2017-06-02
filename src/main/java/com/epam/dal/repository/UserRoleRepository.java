@@ -1,5 +1,6 @@
 package com.epam.dal.repository;
 
+import com.epam.dal.domain.UserEntity;
 import com.epam.dal.domain.UserRoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -9,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserRoleRepository  extends JpaRepository<UserRoleEntity, Long> {
-    UserRoleEntity findByUser(Long userId);
+    UserRoleEntity findByUserUserId(UserEntity userEntity);
 }

@@ -13,8 +13,14 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
+    UserEntity findByUserId(Long userId);
+
     List<UserEntity> findAll();
+
     UserEntity save(UserEntity userEntity);
+
     void delete(Long id);
+
     UserEntity findByUserEmail(String email);
+
 }

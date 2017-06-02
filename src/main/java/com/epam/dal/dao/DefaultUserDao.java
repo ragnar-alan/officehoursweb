@@ -14,10 +14,7 @@ import java.util.List;
  * Created by Tamas_Boros on 5/24/2017.
  */
 @Component
-public class DefaultUserDao implements UserDao{
-
-    @Autowired
-    private SessionFactory sessionFactory;
+public class DefaultUserDao implements UserDao {
 
     @Autowired
     private UserRepository userRepository;

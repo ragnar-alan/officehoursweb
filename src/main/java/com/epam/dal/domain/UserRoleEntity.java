@@ -7,19 +7,19 @@ import java.io.Serializable;
  * Created by Tamas_Boros on 6/1/2017.
  */
 @Entity
-@Table(name="user_role", uniqueConstraints = @UniqueConstraint(columnNames = { "user_id", "role" }))
+@Table(name = "user_role", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "role"}))
 public class UserRoleEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="role_id")
+    @Column(name = "role_id")
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    @Column(name="role")
+    @Column(name = "role")
     private String role;
 
     public Long getId() {

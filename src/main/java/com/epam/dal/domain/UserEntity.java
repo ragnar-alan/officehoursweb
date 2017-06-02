@@ -13,31 +13,31 @@ import org.springframework.data.annotation.Transient;
  */
 
 @Entity
-@Table(name="users")
-public class UserEntity implements Serializable{
+@Table(name = "users")
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private Long userId;
 
-    @Column(name="user_email")
+    @Column(name = "user_email")
     @NotEmpty
     private String userEmail;
 
-    @Column(name="user_password")
+    @Column(name = "user_password")
     @NotEmpty
     @Transient
     private String userPassword;
 
-    @Column(name="created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL" )
+    @Column(name = "created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL")
     @NotEmpty
     private ZonedDateTime createdAt;
 
-    @Column(name="updated_at", columnDefinition = "DATETIME DEFAULT NULL")
+    @Column(name = "updated_at", columnDefinition = "DATETIME DEFAULT NULL")
     private ZonedDateTime updatedAt;
 
-    @Column(name="deleted_at", columnDefinition = "DATETIME DEFAULT NULL")
+    @Column(name = "deleted_at", columnDefinition = "DATETIME DEFAULT NULL")
     private ZonedDateTime deletedAt;
 
     public Long getUserId() {

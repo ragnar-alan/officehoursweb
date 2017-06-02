@@ -31,7 +31,12 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/static/**").permitAll()
+                .antMatchers("/js/jquery-3.2.1.min").permitAll()
+                .antMatchers("/js/*").permitAll()
+                .antMatchers("/css/*").permitAll()
+                .antMatchers("/css/skins/*").permitAll()
+                .antMatchers("/images/*").permitAll()
+                .antMatchers("/fonts/*").permitAll()
                 .antMatchers("/**")
                 .access("hasRole('ADMIN')")
             .and()
@@ -50,14 +55,6 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
             .and()
                 .exceptionHandling().accessDeniedPage("/403");
     }
-
-
-    /*@Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .inMemoryAuthentication()
-            .withUser("user").password("password").roles("USER");
-    }*/
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

@@ -10,29 +10,29 @@ import java.time.ZonedDateTime;
  */
 
 @Entity
-@Table(name="user_profiles")
+@Table(name = "user_profiles")
 public class UserProfileEntity implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(name="profile_id")
+    @Column(name = "profile_id")
     private Long profileId;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="token_id", columnDefinition = "VARCHAR(255) NOT NULL")
+    @JoinColumn(name = "token_id", columnDefinition = "VARCHAR(255) NOT NULL")
     private UserTokenEntity userTokenEntity;
 
-    @Column(name="created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL" )
+    @Column(name = "created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL")
     private ZonedDateTime createdAt;
 
-    @Column(name="updated_at", columnDefinition = "DATETIME DEFAULT NULL")
+    @Column(name = "updated_at", columnDefinition = "DATETIME DEFAULT NULL")
     private ZonedDateTime updatedAt;
 
-    @Column(name="deleted_at", columnDefinition = "DATETIME DEFAULT NULL")
+    @Column(name = "deleted_at", columnDefinition = "DATETIME DEFAULT NULL")
     private ZonedDateTime deletedAt;
 
     public Long getProfileId() {
