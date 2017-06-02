@@ -1,6 +1,10 @@
 package com.epam.controller;
 
+import com.epam.dal.domain.UserRegistrationRequest;
+import com.epam.service.RegistrationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -13,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class AuthController {
 
+    @Autowired
+    private RegistrationService registrationService;
+
     @RequestMapping(value="/login", method = RequestMethod.GET)
     public String login() {
         return "login";
@@ -22,5 +29,11 @@ public class AuthController {
     public String logout(HttpServletRequest request) {
         request.getRemoteUser();
         return "login";
+    }
+
+    @RequestMapping(value = "/registrate", method = RequestMethod.POST)
+    public String SuccessRegistrate(@RequestBody UserRegistrationRequest request) {
+        registrationService.registrate(request);
+        return "login?reg-success";
     }
 }
