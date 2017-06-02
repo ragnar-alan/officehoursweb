@@ -1,7 +1,11 @@
 package com.epam.dal.transformer;
 
 import com.epam.dal.domain.User;
+import com.epam.dal.domain.UserRegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.time.ZonedDateTime;
 
 /**
  * Created by Tamas_Boros on 6/2/2017.
@@ -9,10 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserRegistrationRequestTranformer {
 
     @Autowired
-    Pass
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public User transformUserRegustrationRequestToUser(String request) {
+    public User transformUserRegustrationRequestToUser(UserRegistrationRequest request) {
         User user = new User();
+        user.setUserEmail(request.getEmail());
+        user.setUserPassword(bCryptPasswordEncoder.encode(request.getPassword()));
+        user.setCreatedAt(ZonedDateTime.now());
+        user.setUpdatedAt(ZonedDateTime.now());
 
         return user;
     }
