@@ -31,15 +31,34 @@
                     <div th:if="${param.logout}">
                         You have been logged out.
                     </div>
-                    <div th:if="${param.reg-success}">
-                        You have been registrated successfully.
-                    </div>
-                    <div th:if="${param.reg-error}">
-                        You have not been registrated.
-                    </div>
                 </div>
             </div>
 
+
+            <div class="row" th:if="${regStatus != false && regStatus != null}">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="alert alert-danger" role="alert" data-dismiss="alert" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <th:block>
+                            {{$regMessage}}
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+            <div class="row" th:if="${regStatus != true && regStatus != null}">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="alert alert-success" role="alert" data-dismiss="alert" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <th:block>
+                            {{$regMessage}}
+                        </th:block>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-login">
@@ -72,9 +91,9 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <form id="register-form" th:action="@{/register}" method="post" role="form" style="display: none;">
+                                    <form id="register-form" th:action="@{/registrate}" method="post" role="form" style="display: none;">
                                         <div class="form-group has-feedback">
-                                            <input type="email" name="regEmail" id="regEmail" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                                            <input type="email" name="email" id="regEmail" tabindex="1" class="form-control" placeholder="Email Address" value="">
                                             <span class="glyphicon form-control-feedback" id="feedback-icon"></span>
                                         </div>
                                         <div class="form-group has-feedback">
@@ -82,7 +101,7 @@
                                             <span class="glyphicon form-control-feedback" id="feedback-icon-password"></span>
                                         </div>
                                         <div class="form-group has-feedback">
-                                            <input type="password" name="confirm-password" id="regConfirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                                            <input type="password" name="passwordConfirmation" id="regConfirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
                                             <span class="glyphicon form-control-feedback" id="feedback-icon-passwordConf"></span>
                                         </div>
                                         <div class="form-group has-feedback">
@@ -95,7 +114,7 @@
                                         <div class="form-group has-feedback">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-3">
-                                                    <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                                                    <input type="submit" id="register-submit" tabindex="4" class="form-control btn btn-register">
                                                 </div>
                                             </div>
                                         </div>
@@ -106,24 +125,6 @@
                     </div>
                 </div>
             </div>
-
-            <!--<form th:action="@{/login}" method="post">
-                <div class="row text-center">
-                    <div class="col-md-12">
-                        <input class="form-control" type="text" name="username"/>
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col-md-12">
-                        <input class="form-control" type="password" name="password"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <input class="btn form-control" type="submit" value="Sign In"/>
-                    </div>
-                </div>
-            </form>-->
         </section>
     </div>
     <div th:include="fragments/footer"></div>

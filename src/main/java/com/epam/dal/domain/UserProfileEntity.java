@@ -1,7 +1,10 @@
 package com.epam.dal.domain;
 
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
@@ -10,11 +13,11 @@ import java.time.ZonedDateTime;
  */
 
 @Entity
-@Table(name = "user_profiles")
+@Table(name = "user_profiles", uniqueConstraints = @UniqueConstraint(columnNames={"profile_id","user_id"}))
 public class UserProfileEntity implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "profile_id")
     private Long profileId;
 
@@ -23,10 +26,11 @@ public class UserProfileEntity implements Serializable {
     private UserEntity user;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "token_id", columnDefinition = "VARCHAR(255) NOT NULL")
+    @JoinColumn(name = "token_id", columnDefinition = "VARCHAR(255) DEFAULT NULL")
     private UserTokenEntity userTokenEntity;
 
     @Column(name = "created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL")
+    @NotNull
     private ZonedDateTime createdAt;
 
     @Column(name = "updated_at", columnDefinition = "DATETIME DEFAULT NULL")

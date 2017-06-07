@@ -10,12 +10,12 @@
 
     <header class="main-header">
         <div class="logo"><b>Office</b>Hours</div>
-        <th:block th:include="fragments/top_bar"></th:block>
+        <th:block th:include="fragments/top_bar_login"></th:block>
     </header>
-    <th:block th:include="fragments/navigation"/>
+    <th:block th:include="fragments/navigation_login"/>
     <div class="content-wrapper">
         <section class="content-header">
-            {{ isAuthenticated(); }}
+
         </section>
     </div>
     <div th:include="fragments/footer"></div>

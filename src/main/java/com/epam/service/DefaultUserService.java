@@ -1,18 +1,19 @@
 package com.epam.service;
 
 import com.epam.dal.dao.UserDao;
+import com.epam.dal.dao.UserProfileDao;
 import com.epam.dal.dao.UserRoleDao;
-import com.epam.dal.domain.User;
-import com.epam.dal.domain.UserRole;
-import com.epam.dal.repository.UserRoleRepository;
+import com.epam.dal.domain.*;
+import com.epam.dal.transformer.UserEntityTransformer;
+import com.epam.dal.transformer.UserRoleTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -28,15 +29,24 @@ public class DefaultUserService implements UserService {
     private UserDao userDao;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
     private UserRoleDao userRoleDao;
 
+    @Autowired
+    private UserProfileDao userProfileDao;
+
+    @Autowired
+    private UserEntityTransformer userEntityTransformer;
+
+    @Autowired
+    private UserRoleTransformer userRoleTransformer;
+
     @Override
-    public void save(User user) {
-        user.setUserPassword(bCryptPasswordEncoder.encode(user.getUserPassword()));
-        userDao.save(user);
+    public User save(User user) {
+        UserRole userRole = createNewUserRoleRecord(user);
+        UserProfile userProfile = createNewUserProfile(user);
+        UserProfileEntity userProfileEntity = userProfileDao.save(userProfile);
+        UserRoleEntity userRoleEntity = userRoleDao.save(userRole);
+        return userEntityTransformer.transformUserEntityToUser(userDao.save(user));
     }
 
     @Override
@@ -73,5 +83,21 @@ public class DefaultUserService implements UserService {
         UserRole role = userRoleDao.findByUser(user.getUserId());
         List<GrantedAuthority> userRole = buildUserAuthority(role);
         return buildUserForAuthentication(user, userRole);
+    }
+
+    private UserRole createNewUserRoleRecord(User user) {
+        UserRole userRole = new UserRole();
+        userRole.setRole("ADMIN");
+        userRole.setUser(user);
+        return userRole;
+    }
+
+    private UserProfile createNewUserProfile(User user) {
+        ZonedDateTime now = ZonedDateTime.now();
+        UserProfile userProfile = new UserProfile();
+        userProfile.setUser(user);
+        userProfile.setCreatedAt(now);
+        userProfile.setUpdatedAt(now);
+        return userProfile;
     }
 }

@@ -72,17 +72,11 @@ $(document).ready(function() {
 
     function isRegistrationFormOk() {
         $("#register-form").children("div").each(function(e) {
-            if (this.hasClass("has-error")) {
+            if ($(this).hasClass("has-error")) {
                 return false;
             }
         });
     }
 
-    $("#register-submit").on("click", function(e) {
-        e.preventDefault();
-        if (isRegistrationFormOk()) {
-            this.submit();
-        }
-    })
 });
 

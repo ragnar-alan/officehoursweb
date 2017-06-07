@@ -2,6 +2,7 @@ package com.epam.dal.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
@@ -13,15 +14,15 @@ import org.springframework.data.annotation.Transient;
  */
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames={"user_email"}))
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "user_email", unique = true)
+    @Column(name = "user_email")
     @NotEmpty
     private String userEmail;
 
@@ -31,7 +32,7 @@ public class UserEntity {
     private String userPassword;
 
     @Column(name = "created_at", columnDefinition = "DATETIME DEFAULT NOW() NOT NULL")
-    @NotEmpty
+    @NotNull
     private ZonedDateTime createdAt;
 
     @Column(name = "updated_at", columnDefinition = "DATETIME DEFAULT NULL")

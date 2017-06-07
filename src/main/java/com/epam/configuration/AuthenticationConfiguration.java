@@ -37,6 +37,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/skins/*").permitAll()
                 .antMatchers("/images/*").permitAll()
                 .antMatchers("/fonts/*").permitAll()
+                .antMatchers("/registrate").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .formLogin()
@@ -58,7 +59,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
     }
 }

@@ -2,6 +2,7 @@ package com.epam.dal.dao;
 
 import com.epam.dal.domain.User;
 import com.epam.dal.domain.UserProfile;
+import com.epam.dal.domain.UserProfileEntity;
 import com.epam.dal.repository.UserProfileRepository;
 import com.epam.dal.repository.UserRepository;
 import com.epam.dal.transformer.UserEntityTransformer;
@@ -25,8 +26,8 @@ public class DefaultUserProfileDao implements UserProfileDao{
 
 
     @Override
-    public void save(UserProfile userProfile) {
-        userProfileRepository.save(userProfileEntityTransformer.transformUserProfileToUserProfileEntityForCreation(userProfile));
+    public UserProfileEntity save(UserProfile userProfile) {
+        return userProfileRepository.save(userProfileEntityTransformer.transformUserProfileToUserProfileEntityForCreation(userProfile));
     }
 
     @Override

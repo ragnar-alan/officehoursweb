@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Tamas_Boros on 5/24/2017.
  */
 public interface UserService extends UserDetailsService {
-    void save(User user);
+    User save(User user);
 
     List<User> getAllUsers();
 

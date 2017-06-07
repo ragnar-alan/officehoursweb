@@ -2,6 +2,7 @@ package com.epam.dal.transformer;
 
 import com.epam.dal.domain.UserProfile;
 import com.epam.dal.domain.UserProfileEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.ZonedDateTime;
@@ -12,13 +13,16 @@ import java.time.ZonedDateTime;
 @Component
 public class UserProfileEntityTransformer {
 
+    @Autowired
+    private UserEntityTransformer userEntityTransformer;
+
     public UserProfileEntity transformUserProfileToUserProfileEntityForCreation(UserProfile userProfile) {
         UserProfileEntity userProfileEntity = new UserProfileEntity();
         userProfileEntity.setProfileId(userProfile.getProfileId());
         userProfileEntity.setUserTokenEntity(userProfile.getToken());
-        userProfileEntity.setUser(userProfile.getUser());
-        userProfileEntity.setCreatedAt(ZonedDateTime.now());
-        userProfileEntity.setUpdatedAt(ZonedDateTime.now());
+        userProfileEntity.setUser(userEntityTransformer.transformUserToUserEntity(userProfile.getUser()));
+        userProfileEntity.setCreatedAt(userProfile.getCreatedAt());
+        userProfileEntity.setUpdatedAt(userProfile.getUpdatedAt());
         return userProfileEntity;
     }
 }

@@ -69,7 +69,7 @@ public class DataSourceConfiguration {
     @Bean
     public SessionFactory getSessionFactory() {
         LocalSessionFactoryBuilder lsfb = new LocalSessionFactoryBuilder(getDataSource());
-        lsfb.scanPackages("com.epam.dal.domain").addProperties(getHibernateProperties());
+        lsfb.scanPackages("com.epam.dal").addProperties(getHibernateProperties());
         return lsfb.buildSessionFactory();
     }
 
@@ -77,7 +77,7 @@ public class DataSourceConfiguration {
     public Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", hibernateDialect);
-        properties.put("hibernate.show_sql", hibernateShowSql);
+        properties.put("hibernate.show_sql", true);
         properties.put("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
 
         return properties;

@@ -1,6 +1,6 @@
 package com.epam.service;
 
-import com.epam.dal.dao.UserDao;
+import com.epam.dal.domain.User;
 import com.epam.dal.domain.UserRegistrationRequest;
 import com.epam.dal.transformer.UserRegistrationRequestTranformer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,10 @@ public class DefaultRegistrationService implements RegistrationService {
     private UserRegistrationRequestTranformer requestTranformer;
 
     @Override
-    public void registrate(UserRegistrationRequest request) {
-        userService.save(requestTranformer.transformUserRegustrationRequestToUser(request));
+    public User registrate(UserRegistrationRequest request) {
+        if (request.getPassword().equals(request.getPasswordConfirmation())) {
+            return userService.save(requestTranformer.transformUserRegistrationRequestToUser(request));
+        }
+        throw new RuntimeException("NULL LETT");
     }
 }

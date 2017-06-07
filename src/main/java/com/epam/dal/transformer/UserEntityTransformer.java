@@ -20,8 +20,8 @@ public class UserEntityTransformer {
         userEntity.setUserId(user.getUserId());
         userEntity.setUserEmail(user.getUserEmail());
         userEntity.setUserPassword(user.getUserPassword());
-        userEntity.setCreatedAt(ZonedDateTime.now());
-        userEntity.setUpdatedAt(ZonedDateTime.now());
+        userEntity.setCreatedAt(user.getCreatedAt());
+        userEntity.setUpdatedAt(user.getUpdatedAt());
         return userEntity;
     }
 
