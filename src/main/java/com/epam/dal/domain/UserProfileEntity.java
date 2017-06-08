@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
  */
 
 @Entity
-@Table(name = "user_profiles", uniqueConstraints = @UniqueConstraint(columnNames={"profile_id","user_id"}))
+@Table(name = "user_profiles", uniqueConstraints = @UniqueConstraint(columnNames={"user_id"}))
 public class UserProfileEntity implements Serializable {
 
     @Id
@@ -21,7 +21,7 @@ public class UserProfileEntity implements Serializable {
     @Column(name = "profile_id")
     private Long profileId;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 

@@ -12,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -42,11 +43,10 @@ public class DefaultUserService implements UserService {
 
     @Override
     public User save(User user) {
-        UserRole userRole = createNewUserRoleRecord(user);
-        UserProfile userProfile = createNewUserProfile(user);
-        UserProfileEntity userProfileEntity = userProfileDao.save(userProfile);
-        UserRoleEntity userRoleEntity = userRoleDao.save(userRole);
-        return userEntityTransformer.transformUserEntityToUser(userDao.save(user));
+        UserEntity userEntity = userDao.save(user);
+        UserProfileEntity userProfileEntity = userProfileDao.save(createNewUserProfile(userEntity));
+        UserRoleEntity userRoleEntity = userRoleDao.save(createNewUserRoleRecord(userEntity));
+        return userEntityTransformer.transformUserEntityToUser(userEntity);
     }
 
     @Override
@@ -85,19 +85,18 @@ public class DefaultUserService implements UserService {
         return buildUserForAuthentication(user, userRole);
     }
 
-    private UserRole createNewUserRoleRecord(User user) {
+    private UserRole createNewUserRoleRecord(UserEntity userEntity) {
         UserRole userRole = new UserRole();
         userRole.setRole("ADMIN");
-        userRole.setUser(user);
+        userRole.setUser(userEntityTransformer.transformUserEntityToUser(userEntity));
         return userRole;
     }
 
-    private UserProfile createNewUserProfile(User user) {
-        ZonedDateTime now = ZonedDateTime.now();
+    private UserProfile createNewUserProfile(UserEntity userEntity) {
         UserProfile userProfile = new UserProfile();
-        userProfile.setUser(user);
-        userProfile.setCreatedAt(now);
-        userProfile.setUpdatedAt(now);
+        userProfile.setUser(userEntityTransformer.transformUserEntityToUser(userEntity));
+        userProfile.setCreatedAt(userEntity.getCreatedAt());
+        userProfile.setUpdatedAt(userEntity.getUpdatedAt());
         return userProfile;
     }
 }
