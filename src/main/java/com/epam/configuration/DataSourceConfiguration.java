@@ -69,7 +69,7 @@ public class DataSourceConfiguration {
     @Bean
     public SessionFactory getSessionFactory() {
         LocalSessionFactoryBuilder lsfb = new LocalSessionFactoryBuilder(getDataSource());
-        lsfb.scanPackages("com.epam.dal").addProperties(getHibernateProperties());
+        lsfb.scanPackages("com.epam").addProperties(getHibernateProperties());
         return lsfb.buildSessionFactory();
     }
 
@@ -81,10 +81,5 @@ public class DataSourceConfiguration {
         properties.put("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
 
         return properties;
-    }
-
-    @Bean
-    public HibernateTransactionManager txManager() {
-        return new HibernateTransactionManager(getSessionFactory());
     }
 }

@@ -6,6 +6,7 @@ import com.epam.dal.dao.UserRoleDao;
 import com.epam.dal.domain.*;
 import com.epam.dal.transformer.UserEntityTransformer;
 import com.epam.dal.transformer.UserRoleTransformer;
+import com.epam.exception.UserAlreadyExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -42,6 +43,7 @@ public class DefaultUserService implements UserService {
     private UserRoleTransformer userRoleTransformer;
 
     @Override
+    @Transactional
     public User save(User user) {
         UserEntity userEntity = userDao.save(user);
         UserProfileEntity userProfileEntity = userProfileDao.save(createNewUserProfile(userEntity));

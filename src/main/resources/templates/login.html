@@ -34,28 +34,13 @@
                 </div>
             </div>
 
-
-            <div class="row" th:if="${regStatus != false && regStatus != null}">
+            <div class="row" th:if="${regStatus != null}">
                 <div class="col-md-6 col-md-offset-3">
-                    <div class="alert alert-danger" role="alert" data-dismiss="alert" aria-label="Close">
+                    <div class="alert alert-${regStatus}" role="alert" data-dismiss="alert" aria-label="Close">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <th:block>
-                            {{$regMessage}}
-                        </th:block>
-                    </div>
-                </div>
-            </div>
-            <div class="row" th:if="${regStatus != true && regStatus != null}">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="alert alert-success" role="alert" data-dismiss="alert" aria-label="Close">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <th:block>
-                            {{$regMessage}}
-                        </th:block>
+                        <p th:text="regMessage"></p>
                     </div>
                 </div>
             </div>
