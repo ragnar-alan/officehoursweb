@@ -6,13 +6,7 @@
 	<groupId>com.epam</groupId>
 	<artifactId>officehours</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-    <modules>
-        <module>dal</module>
-        <module>service</module>
-        <module>web</module>
-        <module>lib</module>
-    </modules>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
 
 	<name>Mid-month officehours</name>
 	<description>Track your officehours mid-month to know how are you doing</description>
