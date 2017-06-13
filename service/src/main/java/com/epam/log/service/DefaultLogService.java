@@ -1,7 +1,7 @@
 package com.epam.log.service;
 
-import com.epam.dal.dao.LogDao;
-import com.epam.dal.domain.Log;
+
+import com.epam.log.LogDao;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,7 +10,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DefaultLogService implements LogService {
-
-    private LogDao logDao;
 
 }

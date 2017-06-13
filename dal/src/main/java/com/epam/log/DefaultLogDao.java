@@ -1,8 +1,8 @@
 package com.epam.log;
 
-import com.epam.dal.domain.Log;
-import com.epam.dal.repository.LogRepository;
+
 import com.epam.log.domain.Log;
+import com.epam.log.repository.LogRepository;
 import org.springframework.stereotype.Component;
 
 /**

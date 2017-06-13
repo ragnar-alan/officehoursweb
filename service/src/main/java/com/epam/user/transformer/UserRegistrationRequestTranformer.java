@@ -1,7 +1,8 @@
 package com.epam.user.transformer;
 
-import com.epam.dal.domain.User;
-import com.epam.dal.domain.UserRegistrationRequest;
+
+import com.epam.user.domain.User;
+import com.epam.user.domain.UserRegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;

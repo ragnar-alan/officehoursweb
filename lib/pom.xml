@@ -6,10 +6,28 @@
         <artifactId>officehours</artifactId>
         <groupId>com.epam</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>lib</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.epam</groupId>
+            <artifactId>service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+    <groupId>com.epam</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>OfficeHours Library</name>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>1.8</java.version>
+    </properties>
 
 
 </project>

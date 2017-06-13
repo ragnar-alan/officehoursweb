@@ -1,6 +1,6 @@
 package com.epam.user.service;
 
-import com.epam.dal.domain.User;
+import com.epam.user.domain.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.epam;
+package com.epam.application;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;

@@ -1,13 +1,14 @@
-package com.epam.dal.dao;
+package com.epam.user;
 
-import com.epam.dal.domain.User;
-import com.epam.dal.domain.UserEntity;
-import com.epam.dal.repository.UserRepository;
-import com.epam.dal.transformer.UserEntityTransformer;
-import org.mockito.*;
-
-import static org.testng.Assert.*;
-
+import com.epam.user.dao.DefaultUserDAO;
+import com.epam.user.domain.User;
+import com.epam.user.domain.UserEntity;
+import com.epam.user.repository.UserRepository;
+import com.epam.user.transformer.UserEntityTransformer;
+import org.mockito.BDDMockito;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,10 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.testng.Assert.assertEquals;
+
 /**
  * Created by Tamas_Boros on 5/29/2017.
  */
-public class DefaultUserDaoTest {
+public class DefaultUserDAOTest {
 
     private static final long USER_ID = 1L;
     private static final String USER_EMAIL = "test@test.com";
@@ -28,7 +31,7 @@ public class DefaultUserDaoTest {
     private static final Long[] USER_IDS = {1L, 2L, 3L};
 
     @InjectMocks
-    private DefaultUserDao underTest;
+    private DefaultUserDAO underTest;
 
     @Mock
     private UserEntityTransformer userEntityTransformer;

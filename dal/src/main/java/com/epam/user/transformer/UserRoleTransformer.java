@@ -1,8 +1,8 @@
 package com.epam.user.transformer;
 
-import com.epam.dal.domain.UserEntity;
-import com.epam.dal.domain.UserRole;
-import com.epam.dal.domain.UserRoleEntity;
+
+import com.epam.user.domain.UserRole;
+import com.epam.user.domain.UserRoleEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +23,7 @@ public class UserRoleTransformer {
         return role;
     }
 
-    public UserRoleEntity tranformUserRoleToUserRoleEntity(UserRole userRole) {
+    public UserRoleEntity transformUserRoleToUserRoleEntity(UserRole userRole) {
         UserRoleEntity roleEntity = new UserRoleEntity();
         roleEntity.setId(userRole.getId());
         roleEntity.setRole(userRole.getRole());

@@ -1,8 +1,9 @@
 package com.epam.user.service;
 
-import com.epam.dal.domain.User;
-import com.epam.dal.domain.UserRegistrationRequest;
-import com.epam.dal.transformer.UserRegistrationRequestTranformer;
+
+import com.epam.user.domain.User;
+import com.epam.user.domain.UserRegistrationRequest;
+import com.epam.user.transformer.UserRegistrationRequestTranformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

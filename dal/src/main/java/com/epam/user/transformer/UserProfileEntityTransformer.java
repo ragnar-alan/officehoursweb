@@ -1,7 +1,8 @@
 package com.epam.user.transformer;
 
-import com.epam.dal.domain.UserProfile;
-import com.epam.dal.domain.UserProfileEntity;
+
+import com.epam.user.domain.UserProfile;
+import com.epam.user.domain.UserProfileEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

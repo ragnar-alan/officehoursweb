@@ -1,12 +1,10 @@
-package com.epam.user;
+package com.epam.user.dao;
 
-import com.epam.dal.domain.User;
-import com.epam.dal.domain.UserProfile;
-import com.epam.dal.domain.UserProfileEntity;
-import com.epam.dal.repository.UserProfileRepository;
-import com.epam.dal.repository.UserRepository;
-import com.epam.dal.transformer.UserEntityTransformer;
-import com.epam.dal.transformer.UserProfileEntityTransformer;
+
+import com.epam.user.domain.UserProfile;
+import com.epam.user.domain.UserProfileEntity;
+import com.epam.user.repository.UserProfileRepository;
+import com.epam.user.transformer.UserProfileEntityTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +12,7 @@ import org.springframework.stereotype.Component;
  * Created by Tamas_Boros on 5/24/2017.
  */
 @Component
-public class DefaultUserProfileDao implements UserProfileDao {
+public class DefaultUserProfileDAO implements UserProfileDAO {
 
     @Autowired
     private UserProfileRepository userProfileRepository;

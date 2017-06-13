@@ -1,8 +1,8 @@
 package com.epam.controller;
 
-import com.epam.dal.domain.UserRegistrationRequest;
 import com.epam.exception.UserAlreadyExistException;
-import com.epam.service.RegistrationService;
+import com.epam.user.domain.UserRegistrationRequest;
+import com.epam.user.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

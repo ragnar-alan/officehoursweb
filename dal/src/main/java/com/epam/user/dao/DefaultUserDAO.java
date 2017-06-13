@@ -1,9 +1,10 @@
-package com.epam.user;
+package com.epam.user.dao;
 
-import com.epam.dal.domain.User;
-import com.epam.dal.domain.UserEntity;
-import com.epam.dal.repository.UserRepository;
-import com.epam.dal.transformer.UserEntityTransformer;
+
+import com.epam.user.domain.User;
+import com.epam.user.domain.UserEntity;
+import com.epam.user.repository.UserRepository;
+import com.epam.user.transformer.UserEntityTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by Tamas_Boros on 5/24/2017.
  */
 @Component
-public class DefaultUserDao implements UserDao {
+public class DefaultUserDAO implements UserDAO {
 
     @Autowired
     private UserRepository userRepository;
@@ -29,6 +30,11 @@ public class DefaultUserDao implements UserDao {
     @Override
     public List<User> getAllUser() {
         return userEntityTransformer.bulkTransformUserEntityToUser(userRepository.findAll());
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByUserEmail(email);
     }
 
     @Override

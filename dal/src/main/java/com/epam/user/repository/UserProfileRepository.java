@@ -1,6 +1,7 @@
 package com.epam.user.repository;
 
-import com.epam.dal.domain.UserProfileEntity;
+
+import com.epam.user.domain.UserProfileEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

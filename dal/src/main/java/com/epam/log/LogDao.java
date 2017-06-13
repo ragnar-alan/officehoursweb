@@ -1,6 +1,6 @@
 package com.epam.log;
 
-import com.epam.dal.domain.Log;
+
 import com.epam.log.domain.Log;
 
 /**

@@ -1,7 +1,6 @@
 package com.epam.configuration;
 
-import com.epam.service.DefaultUserService;
-import com.epam.service.UserService;
+import com.epam.user.service.DefaultUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

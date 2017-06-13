@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -18,6 +19,7 @@ import java.util.Properties;
  * Created by boros on 2017. 04. 17..
  */
 @Configuration
+@ComponentScan(basePackages = {"com.epam"})
 public class DataSourceConfiguration {
 
     @Value("${spring.datasource.driver-class-name}")
@@ -40,6 +42,9 @@ public class DataSourceConfiguration {
 
     @Value("${hibernate.hbm2ddl.auto}")
     private String hibernateHbm2ddlAuto;
+
+    @Value("${hibernate.format_sql}")
+    private String hibernateFormatSql;
 
     @Bean
     public DataSource getDataSource() {
@@ -77,7 +82,8 @@ public class DataSourceConfiguration {
     public Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", hibernateDialect);
-        properties.put("hibernate.show_sql", true);
+        properties.put("hibernate.show_sql", hibernateShowSql);
+        properties.put("hibernate.format_sql", hibernateFormatSql);
         properties.put("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
 
         return properties;

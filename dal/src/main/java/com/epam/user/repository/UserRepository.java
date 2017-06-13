@@ -1,7 +1,9 @@
 package com.epam.user.repository;
 
-import com.epam.dal.domain.UserEntity;
+
+import com.epam.user.domain.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,4 +24,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     UserEntity findByUserEmail(String userEmail);
 
+    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN 'true' ELSE 'false' END FROM UserEntity u WHERE u.userEmail = ?1")
+    boolean existsByUserEmail(String userEmail);
 }

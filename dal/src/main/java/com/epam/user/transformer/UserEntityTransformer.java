@@ -1,7 +1,7 @@
 package com.epam.user.transformer;
 
-import com.epam.dal.domain.User;
-import com.epam.dal.domain.UserEntity;
+import com.epam.user.domain.User;
+import com.epam.user.domain.UserEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

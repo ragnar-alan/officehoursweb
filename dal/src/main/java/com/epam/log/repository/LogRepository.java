@@ -1,6 +1,7 @@
 package com.epam.log.repository;
 
-import com.epam.dal.domain.LogEntity;
+
+import com.epam.log.domain.LogEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

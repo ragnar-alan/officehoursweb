@@ -1,5 +1,7 @@
 package com.epam.log.domain;
 
+import com.epam.user.domain.UserTokenEntity;
+
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 
