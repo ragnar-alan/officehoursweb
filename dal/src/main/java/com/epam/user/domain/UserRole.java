@@ -5,7 +5,6 @@ import lombok.Data;
 /**
  * Created by Tamas_Boros on 6/1/2017.
  */
-@Data
 public class UserRole {
 
     private Long id;
@@ -35,4 +34,5 @@ public class UserRole {
     public void setUser(User user) {
         this.user = user;
     }
+
 }

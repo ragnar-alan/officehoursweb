@@ -1,8 +1,5 @@
 package com.epam.user.domain;
 
-import lombok.Data;
-
-import java.sql.Date;
 import java.time.ZonedDateTime;
 
 
@@ -64,5 +61,25 @@ public class User {
 
     public void setDeletedAt(ZonedDateTime deletedAt) {
         this.deletedAt = deletedAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (!userId.equals(user.userId)) return false;
+        if (!userEmail.equals(user.userEmail)) return false;
+        return createdAt.equals(user.createdAt);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = userId.hashCode();
+        result = 31 * result + userEmail.hashCode();
+        result = 31 * result + createdAt.hashCode();
+        return result;
     }
 }

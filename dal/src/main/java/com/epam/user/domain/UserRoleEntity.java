@@ -17,7 +17,7 @@ public class UserRoleEntity implements Serializable {
 
     @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private UserEntity user;
+    private UserEntity userEntity;
 
     @Column(name = "role")
     private String role;
@@ -39,10 +39,10 @@ public class UserRoleEntity implements Serializable {
     }
 
     public UserEntity getUserEntity() {
-        return user;
+        return userEntity;
     }
 
     public void setUserEntity(UserEntity user) {
-        this.user = user;
+        this.userEntity = user;
     }
 }

@@ -1,6 +1,5 @@
-package com.epam.user;
+package com.epam.user.dao;
 
-import com.epam.user.dao.DefaultUserDAO;
 import com.epam.user.domain.User;
 import com.epam.user.domain.UserEntity;
 import com.epam.user.repository.UserRepository;
