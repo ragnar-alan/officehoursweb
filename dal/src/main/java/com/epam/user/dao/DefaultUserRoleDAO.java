@@ -27,14 +27,10 @@ public class DefaultUserRoleDAO implements UserRoleDAO {
     @Autowired
     private UserRoleTransformer userRoleTransformer;
 
-    @Autowired
-    private UserEntityTransformer userEntityTransformer;
-
     @Override
     public UserRole findByUser(Long userId) {
         UserEntity userEntity = userRepository.findByUserId(userId);
-        User user = userEntityTransformer.transformUserEntityToUser(userEntity);
-        return userRoleTransformer.transformUserRoleEntityToUserRole(userRoleRepository.findByUser(userEntity));
+        return userRoleTransformer.transformUserRoleEntityToUserRole(userRoleRepository.findByUserEntity(userEntity));
     }
 
     @Override

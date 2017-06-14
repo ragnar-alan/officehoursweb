@@ -10,8 +10,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @ComponentScan({"com.epam"})
 @PropertySource({"classpath:/hibernate.properties", "classpath:/application.properties"})
-@EnableJpaRepositories("com.epam")
-@EntityScan("com.epam")
+@EnableJpaRepositories("com.epam.**.repository")
+@EntityScan("com.epam.**.domain")
 public class MidMonthOfficehoursApplication {
 
     public static void main(String[] args) {
