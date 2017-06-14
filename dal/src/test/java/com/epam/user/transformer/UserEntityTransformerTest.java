@@ -2,19 +2,17 @@ package com.epam.user.transformer;
 
 import com.epam.user.domain.User;
 import com.epam.user.domain.UserEntity;
-import org.assertj.core.api.ListAssert;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import static org.testng.Assert.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by Tamas_Boros on 6/13/2017.
@@ -37,21 +35,27 @@ public class UserEntityTransformerTest {
 
     @Test
     public void testTransformUserEntityToUserShouldReturnUser() {
+        //GIVEN
         UserEntity dummyUserEntity = createDummyUserEntity(Optional.empty());
         User expected = createDummyUser(Optional.empty());
 
+        //WHEN
         User result = underTest.transformUserEntityToUser(dummyUserEntity);
 
+        //THEN
         assertEquals(result, expected);
     }
 
     @Test
     public void testTransformUserToUserEntityShouldReturnUser() {
+        //GIVEN
         User dummyUser = createDummyUser(Optional.empty());
         UserEntity expected = createDummyUserEntity(Optional.empty());
 
+        //WHEN
         UserEntity result = underTest.transformUserToUserEntity(dummyUser);
 
+        //THEN
         assertEquals(result.getUserId(), expected.getUserId());
         assertEquals(result.getUserEmail(), expected.getUserEmail());
         assertEquals(result.getUserPassword(), expected.getUserPassword());

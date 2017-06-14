@@ -46,19 +46,33 @@ public class UserRoleTransformerTest {
         UserRole expected = createUserRole();
         User user = createDummyUser(Optional.empty());
 
-        BDDMockito.given(userEntityTransformer.transformUserEntityToUser(userEntity)).willReturn(user);
-
         //WHEN
+        BDDMockito.given(userEntityTransformer.transformUserEntityToUser(userEntity)).willReturn(user);
         UserRole result = underTest.transformUserRoleEntityToUserRole(userRoleEntity);
 
-        assertEquals(result.getUser(), expected.getUser());
+        //THEN
+        assertEquals(result, expected);
+    }
+
+    @Test
+    public void testTransformUserRoleToUserRoleEntityShouldReturnUserRoleEntity() {
+        //GIVEN
+        UserEntity userEntity = createDummyUserEntity(Optional.empty());
+        User user = createDummyUser(Optional.empty());
+        UserRole userRole = createUserRole();
+        UserRoleEntity expected = createUserRoleEntity(userEntity);
+
+        //WHEN
+        BDDMockito.given(userEntityTransformer.transformUserToUserEntity(user)).willReturn(userEntity);
+        UserRoleEntity result = underTest.transformUserRoleToUserRoleEntity(userRole);
+
+        //THEN
         assertEquals(result.getId(), expected.getId());
         assertEquals(result.getRole(), expected.getRole());
+        assertEquals(result.getUserEntity(), expected.getUserEntity());
     }
 
     private UserRoleEntity createUserRoleEntity(UserEntity userEntity) {
-        User dummyUser = createDummyUser(Optional.empty());
-
         UserRoleEntity userRoleEntity = new UserRoleEntity();
         userRoleEntity.setId(DUMMY_USER_ROLE_ENTITY_ID);
         userRoleEntity.setRole(DUMMY_USER_ROLE);

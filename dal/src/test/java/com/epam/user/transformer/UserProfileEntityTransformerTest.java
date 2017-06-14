@@ -1,17 +1,20 @@
 package com.epam.user.transformer;
 
 import com.epam.user.domain.User;
+import com.epam.user.domain.UserEntity;
 import com.epam.user.domain.UserProfile;
 import com.epam.user.domain.UserProfileEntity;
+import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import static org.testng.Assert.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.ZonedDateTime;
 import java.util.Optional;
+
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by Tamas_Boros on 6/13/2017.
@@ -64,10 +67,11 @@ public class UserProfileEntityTransformerTest {
     private UserProfileEntity createUserProfileEntity(Optional<Long> userProfileEntityId) {
         UserProfileEntity userProfileEntity = new UserProfileEntity();
         User dummyUser = createDummyUser(Optional.empty());
+        UserEntity dummyUserEntity = createDummyUserEntity(Optional.empty());
         setUserProfileEntityId(userProfileEntityId, userProfileEntity);
 
-        ////BDDmockito
-        userProfileEntity.setUser(userEntityTransformer.transformUserToUserEntity(dummyUser));
+        BDDMockito.given(userEntityTransformer.transformUserToUserEntity(dummyUser)).willReturn(dummyUserEntity);
+        userProfileEntity.setUser(dummyUserEntity);
         userProfileEntity.setCreatedAt(NOW);
         userProfileEntity.setUpdatedAt(NOW);
 
@@ -100,11 +104,30 @@ public class UserProfileEntityTransformerTest {
         return user;
     }
 
+    private UserEntity createDummyUserEntity(Optional<Long> userId) {
+        UserEntity userEntity = new UserEntity();
+        setUserIdToNewUserEntity(userId, userEntity);
+        userEntity.setUserEmail(DUMMY_USER_EMAIL);
+        userEntity.setUserPassword(DUMMY_USER_PASSWORD);
+        userEntity.setCreatedAt(NOW);
+        userEntity.setUpdatedAt(NOW);
+        return userEntity;
+    }
+
     private void setUserIdToNewUser(Optional<Long> userId, User user) {
         if (userId.isPresent()) {
             user.setUserId(userId.get());
         } else {
             user.setUserId(DUMMY_USER_ID);
+        }
+    }
+
+
+    private void setUserIdToNewUserEntity(Optional<Long> userId, UserEntity userEntity) {
+        if (userId.isPresent()) {
+            userEntity.setUserId(userId.get());
+        } else {
+            userEntity.setUserId(DUMMY_USER_ID);
         }
     }
 }
