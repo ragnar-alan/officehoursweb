@@ -62,6 +62,21 @@ public class DefaultUserRoleDAOTest {
         assertEquals(result, expected);
     }
 
+    @Test
+    public void testSaveUserRoleShouldReturnTheSavedEntity() {
+        User user = createNewUser(Optional.empty());
+        UserRole userRole = createNewUserRole(user);
+        UserEntity userEntity = createNewUserEntity(Optional.empty());
+        UserRoleEntity excpected = createNewUserRoleEntity(userEntity);
+
+        BDDMockito.given(userRoleTransformer.transformUserRoleToUserRoleEntity(userRole)).willReturn(excpected);
+        BDDMockito.given(userRoleRepository.save(excpected)).willReturn(excpected);
+
+        UserRoleEntity result = underTest.save(userRole);
+
+        assertEquals(result, excpected);
+    }
+
     private UserEntity createNewUserEntity(Optional<Long> userId) {
         UserEntity userEntity = new UserEntity();
         setUserIdToNewUserEntity(userId, userEntity);

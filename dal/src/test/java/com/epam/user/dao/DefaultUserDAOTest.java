@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by Tamas_Boros on 5/29/2017.
@@ -71,6 +72,26 @@ public class DefaultUserDAOTest {
         List<User> results = underTest.getAllUser();
         //THEN
         assertEquals(results, users);
+    }
+
+    @Test
+    public void testGetUserByEmailShouldReturnUser() {
+        UserEntity userEntity = createNewUserEntity(Optional.empty());
+        User expected = createNewUser(Optional.empty());
+
+        BDDMockito.given(userRepository.findByUserEmail(USER_EMAIL)).willReturn(userEntity);
+        BDDMockito.given(userEntityTransformer.transformUserEntityToUser(userEntity)).willReturn(expected);
+
+        User result = underTest.getUserByEmail(USER_EMAIL);
+
+        assertEquals(result, expected);
+    }
+
+    @Test
+    public void testExistByEmailShouldReturnTrueWhenUserExists() {
+        BDDMockito.given(userRepository.existsByUserEmail(USER_EMAIL)).willReturn(true);
+        boolean result = underTest.existsByEmail(USER_EMAIL);
+        assertTrue(result);
     }
 
     private List<User> getUsers() {
