@@ -27,11 +27,6 @@ public class DefaultUserProfileDAO implements UserProfileDAO {
     }
 
     @Override
-    public void update(UserProfile user) {
-        //TODO
-    }
-
-    @Override
     public void delete(Long uid) {
         userProfileRepository.delete(uid);
     }

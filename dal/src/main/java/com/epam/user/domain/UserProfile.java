@@ -12,7 +12,9 @@ public class UserProfile {
 
     private Long profileId;
     private User user;
-    private UserTokenEntity token;
+    private String lastname;
+    private String firstname;
+    private UserToken token;
     private ZonedDateTime createdAt;
     private ZonedDateTime updatedAt;
     private ZonedDateTime deletedAt;
@@ -33,11 +35,27 @@ public class UserProfile {
         this.user = user;
     }
 
-    public UserTokenEntity getToken() {
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public UserToken getToken() {
         return token;
     }
 
-    public void setToken(UserTokenEntity token) {
+    public void setToken(UserToken token) {
         this.token = token;
     }
 

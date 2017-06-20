@@ -9,8 +9,6 @@ import com.epam.user.domain.UserProfileEntity;
 public interface UserProfileDAO {
     UserProfileEntity save(UserProfile user);
 
-    void update(UserProfile user);
-
     void delete(Long upid);
 
 }

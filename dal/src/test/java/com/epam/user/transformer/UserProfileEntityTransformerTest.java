@@ -1,9 +1,6 @@
 package com.epam.user.transformer;
 
-import com.epam.user.domain.User;
-import com.epam.user.domain.UserEntity;
-import com.epam.user.domain.UserProfile;
-import com.epam.user.domain.UserProfileEntity;
+import com.epam.user.domain.*;
 import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -25,6 +22,10 @@ public class UserProfileEntityTransformerTest {
     private static final Long DUMMY_USER_ID= 1L;
     private static final String DUMMY_USER_EMAIL = "test@test.com";
     private static final String DUMMY_USER_PASSWORD = "1234";
+    private static final String DUMMY_USER_FIRSTNAME = "Test";
+    private static final String DUMMY_USER_LASTNAME = "User";
+    private static final String TOKEN = "12:AB:12:AB";
+    public static final long TOKEN_ID = 1L;
     private static final ZonedDateTime NOW = ZonedDateTime.now();
 
     @InjectMocks
@@ -32,6 +33,9 @@ public class UserProfileEntityTransformerTest {
 
     @Mock
     private UserEntityTransformer userEntityTransformer;
+
+    @Mock
+    private UserTokenTransformer userTokenTransformer;
 
     @BeforeMethod
     public void setupMocks() {
@@ -43,6 +47,10 @@ public class UserProfileEntityTransformerTest {
         //GIVEN
         UserProfile userProfile = createUserProfile(Optional.empty());
         UserProfileEntity expected = createUserProfileEntity(Optional.empty());
+        UserTokenEntity userTokenEntity = createNewUserTokenEntity();
+        UserToken userToken = createNewUserToken();
+
+        BDDMockito.given(userTokenTransformer.transformUserTokenToUserTokenEntity(userToken)).willReturn(userTokenEntity);
 
         //WHEN
         UserProfileEntity result = underTest.transformUserProfileToUserProfileEntityForCreation(userProfile);
@@ -57,6 +65,9 @@ public class UserProfileEntityTransformerTest {
 
         UserProfile userProfile = new UserProfile();
         setUserProfileId(userProfileId, userProfile);
+        userProfile.setFirstname(DUMMY_USER_FIRSTNAME);
+        userProfile.setLastname(DUMMY_USER_LASTNAME);
+        userProfile.setToken(createNewUserToken());
         userProfile.setUser(dummyUser);
         userProfile.setCreatedAt(NOW);
         userProfile.setUpdatedAt(NOW);
@@ -72,6 +83,9 @@ public class UserProfileEntityTransformerTest {
 
         BDDMockito.given(userEntityTransformer.transformUserToUserEntity(dummyUser)).willReturn(dummyUserEntity);
         userProfileEntity.setUser(dummyUserEntity);
+        userProfileEntity.setFirstname(DUMMY_USER_FIRSTNAME);
+        userProfileEntity.setLastname(DUMMY_USER_LASTNAME);
+        userProfileEntity.setUserTokenEntity(createNewUserTokenEntity());
         userProfileEntity.setCreatedAt(NOW);
         userProfileEntity.setUpdatedAt(NOW);
 
@@ -122,12 +136,31 @@ public class UserProfileEntityTransformerTest {
         }
     }
 
-
     private void setUserIdToNewUserEntity(Optional<Long> userId, UserEntity userEntity) {
         if (userId.isPresent()) {
             userEntity.setUserId(userId.get());
         } else {
             userEntity.setUserId(DUMMY_USER_ID);
         }
+    }
+
+    private UserTokenEntity createNewUserTokenEntity() {
+        UserTokenEntity userTokenEntity = new UserTokenEntity();
+        userTokenEntity.setToken(TOKEN);
+        userTokenEntity.setTokenId(TOKEN_ID);
+        userTokenEntity.setCreatedAt(NOW);
+        userTokenEntity.setUpdatedAt(NOW);
+        userTokenEntity.setDeletedAt(null);
+        return userTokenEntity;
+    }
+
+    private UserToken createNewUserToken() {
+        UserToken userToken = new UserToken();
+        userToken.setToken(TOKEN);
+        userToken.setTokenId(TOKEN_ID);
+        userToken.setCreatedAt(NOW);
+        userToken.setUpdatedAt(NOW);
+        userToken.setDeletedAt(null);
+        return userToken;
     }
 }

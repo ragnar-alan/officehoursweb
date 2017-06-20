@@ -1,9 +1,6 @@
 package com.epam.user.dao;
 
-import com.epam.user.domain.User;
-import com.epam.user.domain.UserEntity;
-import com.epam.user.domain.UserProfile;
-import com.epam.user.domain.UserProfileEntity;
+import com.epam.user.domain.*;
 import com.epam.user.repository.UserProfileRepository;
 import com.epam.user.transformer.UserProfileEntityTransformer;
 import org.mockito.BDDMockito;
@@ -26,6 +23,10 @@ public class DefaultUserProfileDAOTest {
     private static final long USER_ID = 1L;
     private static final String USER_EMAIL = "test@test.com";
     private static final String USER_PASSWORD = "password";
+    private static final String DUMMY_USER_FIRSTNAME = "Test";
+    private static final String DUMMY_USER_LASTNAME = "User";
+    private static final String TOKEN = "12:AB:12:AB";
+    public static final long TOKEN_ID = 1L;
     private static final ZonedDateTime NOW = ZonedDateTime.now();
 
     @InjectMocks
@@ -70,6 +71,9 @@ public class DefaultUserProfileDAOTest {
     private UserProfile createNewUserProfile(User user) {
         UserProfile userProfile = new UserProfile();
         userProfile.setUser(user);
+        userProfile.setFirstname(DUMMY_USER_FIRSTNAME);
+        userProfile.setLastname(DUMMY_USER_LASTNAME);
+        userProfile.setToken(createNewUserToken());
         userProfile.setCreatedAt(NOW);
         userProfile.setUpdatedAt(NOW);
         return userProfile;
@@ -78,6 +82,9 @@ public class DefaultUserProfileDAOTest {
     private UserProfileEntity createNewUserProfileEntity(UserEntity userEntity) {
         UserProfileEntity userProfileEntity = new UserProfileEntity();
         userProfileEntity.setUser(userEntity);
+        userProfileEntity.setFirstname(DUMMY_USER_FIRSTNAME);
+        userProfileEntity.setLastname(DUMMY_USER_LASTNAME);
+        userProfileEntity.setUserTokenEntity(createNewUserTokenEntity());
         userProfileEntity.setCreatedAt(NOW);
         userProfileEntity.setUpdatedAt(NOW);
         return userProfileEntity;
@@ -108,5 +115,25 @@ public class DefaultUserProfileDAOTest {
         } else {
             userEntity.setUserId(USER_ID);
         }
+    }
+
+    private UserTokenEntity createNewUserTokenEntity() {
+        UserTokenEntity userTokenEntity = new UserTokenEntity();
+        userTokenEntity.setToken(TOKEN);
+        userTokenEntity.setTokenId(TOKEN_ID);
+        userTokenEntity.setCreatedAt(NOW);
+        userTokenEntity.setUpdatedAt(NOW);
+        userTokenEntity.setDeletedAt(null);
+        return userTokenEntity;
+    }
+
+    private UserToken createNewUserToken() {
+        UserToken userToken = new UserToken();
+        userToken.setToken(TOKEN);
+        userToken.setTokenId(TOKEN_ID);
+        userToken.setCreatedAt(NOW);
+        userToken.setUpdatedAt(NOW);
+        userToken.setDeletedAt(null);
+        return userToken;
     }
 }
