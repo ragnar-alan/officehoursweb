@@ -3,6 +3,7 @@ package com.epam.user.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
@@ -22,6 +23,12 @@ public class UserProfileEntity implements Serializable {
     @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private UserEntity user;
+
+    @Column(name = "first_name", columnDefinition = "VARCHAR(200) DEFAULT NULL")
+    private String firstname;
+
+    @Column(name = "last_name", columnDefinition = "VARCHAR(200) DEFAULT NULL")
+    private String lastname;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "token_id", columnDefinition = "VARCHAR(255) DEFAULT NULL")
@@ -43,6 +50,22 @@ public class UserProfileEntity implements Serializable {
 
     public void setProfileId(Long profileId) {
         this.profileId = profileId;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public UserEntity getUser() {

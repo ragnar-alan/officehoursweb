@@ -20,6 +20,9 @@ public class LogEntity {
     @JoinColumn(name = "token_id")
     private UserTokenEntity userTokenEntity;
 
+    @Enumerated(EnumType.STRING)
+    private Event event;
+
     @Column(name = "user_added_time")
     private byte userAddedTime;
 
@@ -43,6 +46,14 @@ public class LogEntity {
 
     public void setUserTokenEntity(UserTokenEntity userTokenEntity) {
         this.userTokenEntity = userTokenEntity;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
     public ZonedDateTime getCreatedAt() {
