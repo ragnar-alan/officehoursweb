@@ -154,5 +154,7 @@
         <module>web</module>
         <module>lib</module>
         <module>application</module>
+        <module>test</module>
+        <module>test</module>
     </modules>
 </project>
